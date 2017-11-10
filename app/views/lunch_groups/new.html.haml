@@ -1,0 +1,13 @@
+.col-md-9
+  random group
+
+.col-md-3
+  %ul.list-group
+    %li.list-group-item.list-group-item-info
+      %i.fa.fa-calendar
+      Upcoming Lunches
+    - (Date.today..28.days.from_now).each do |date|
+      - if date.strftime('%A') == 'Friday'
+        %li.list-group-item{class: ('active' if date == Date.today).to_s}
+          = date.inspect
+
