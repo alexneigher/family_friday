@@ -7,7 +7,9 @@
         %li.list-group-item
           = employee.name
 - if groupings.empty?
-  You don't have enough people! Just go eat together :)
-  %br
-  OR
-  = link_to "add some employees", new_employee_path
+  .col-md-12
+    .well.text-center
+      You don't have enough people! Just go eat together :)
+      %br
+      OR
+      = link_to "add some employees", new_employee_path
