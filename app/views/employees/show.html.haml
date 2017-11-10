@@ -1,0 +1,9 @@
+%p#notice= notice
+
+.well
+  = @employee.inspect
+= link_to 'Edit', edit_employee_path(@employee)
+|
+= link_to 'Back', employees_path
+|
+= link_to 'DELETE', employee_path(@employee), method: :delete, class: 'text-danger'

@@ -1,0 +1,22 @@
+%p#notice= notice
+%h1 Employees
+%table.table-bordered.table-responsive.table
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Email
+      %th Actions
+
+  %tbody
+    - @employees.each do |employee|
+      %tr
+        %td= employee.id
+        %td= employee.name
+        %td= employee.email
+        %td
+          = link_to 'Show', employee
+          = link_to 'Edit', edit_employee_path(employee)
+          = link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Employee', new_employee_path

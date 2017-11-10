@@ -1,0 +1,4 @@
+%h1.text-center New Employee
+
+= form_for @employee, url: employees_path, method: :post do |f|
+  = render partial: 'form', locals: {f: f}

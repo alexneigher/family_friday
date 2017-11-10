@@ -1,0 +1,4 @@
+%h1.text-center Editing #{@employee.name}
+
+= form_for @employee, url: employee_path(@employee), method: :put do |f|
+  = render partial: 'form', locals: {f: f}

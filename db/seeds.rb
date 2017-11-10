@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-#seed the employees table
-100.times do 
+#seed the employees table (with a funky number to show sort magic)
+91.times do 
   Employee.create(name: Faker::Name.name, email: Faker::Internet.email)
 end

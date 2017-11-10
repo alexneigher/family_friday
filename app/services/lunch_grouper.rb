@@ -29,7 +29,6 @@ class LunchGrouper
     def at_least_one_group?(grouped_employees)
       return false unless grouped_employees #nil
       return false if grouped_employees.length.zero? #no groups
-
       return false unless grouped_employees.first.length >= MIN_GROUP_SIZE #at least 1 group
     
       true
