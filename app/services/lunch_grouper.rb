@@ -3,10 +3,11 @@ class LunchGrouper
   def initialize(seed: seed)
     @seed = seed
     @employees = Employee.all #if this gets more complicated, extract w/ a wrapper around A.R.
+    @group_employees = []
   end
 
   def group_employees
-    grouped_employees = shuffled_employees.in_groups_of(3, false)
+    @grouped_employees = shuffled_employees.in_groups_of(3, false)
     lunch_groups = []
 
     #check to make sure we have at least 3 people to match
@@ -23,6 +24,11 @@ class LunchGrouper
     end
 
     lunch_groups
+  end
+
+  def save!(seed: seed)
+    #LunchGroup.create(seed: seed, employees: @grouped_employees)
+    #LunchMailer.send_lunch_notifications(@grouped_employees)
   end
 
   private

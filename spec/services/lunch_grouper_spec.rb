@@ -12,7 +12,7 @@ RSpec.describe LunchGrouper do
     end
   end
 
-  context 'when there are 2 employees' do
+  context 'when there are fewer than 3 employees' do
     let!(:employee_1){ create(:employee) }
     let!(:employee_2){ create(:employee) }
     let(:grouper){ LunchGrouper.new(seed: 1) }
