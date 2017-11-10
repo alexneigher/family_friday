@@ -2,14 +2,14 @@
 .col-md-9
   .row
     .col-md-12
-      
       = link_to lunch_groups_path(seed: @seed), method: :post, class: 'btn btn-primary' do
         Save & Send Notifications
-
-      = link_to root_path, class: 'btn btn-default pull-right' do
-        Shuffle
-  %hr
   .row
+    .col-md-12
+      %h1 Proposed Lunch Groups:
+      .text-muted
+        Not quite right?
+        = link_to "shuffle", root_path
     = render partial: 'lunch_groups/shared/lunch_groups', locals: {groupings: @groupings}
     
 
