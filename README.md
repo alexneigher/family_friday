@@ -9,7 +9,7 @@ This application randomly matches employees for lunches.
   -  `bundle install`
 
 - Seed a local database
-  - `rake db:create db:migrate db:seed`  
+  - `rake db:create db:migrate db:seed`  (this adds employees)
 
 - Run local webserver
   - `rails server` 
@@ -22,3 +22,5 @@ The homepage will randomly generate groups based on all of your employees. If yo
 Once you like the groupings click "Save & Send Notifications". This persists this group, as well as sends out emails to all of the members (#todo on the email part).
 
 You can view previous lunch groupings by clicking the menu in the top nav.
+
+To add/edit/delete employees click on the employees nav item.

@@ -2,6 +2,7 @@
   .col-md-6.col-md-offset-3
     .panel.panel-default
       .panel-body
+        = flash_message(@employee)
         .form-group
           %label Name
           = f.text_field :name, class: 'form-control'
