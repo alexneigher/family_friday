@@ -1,24 +1,24 @@
-# README
+## Alex's Lunch Grouper
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application randomly matches employees for lunches.
 
-Things you may want to cover:
+#### How to run locally:
+---
+- Clone the repository 
+- Install requisite gems
+  -  `bundle install`
 
-* Ruby version
+- Seed a local database
+  - `rake db:create db:migrate db:seed`  
 
-* System dependencies
+- Run local webserver
+  - `rails server` 
 
-* Configuration
+#### How it works:
+---
 
-* Database creation
+The homepage will randomly generate groups based on all of your employees. If you do not like these groups for whatever reason, click "shuffle". 
 
-* Database initialization
+Once you like the groupings click "Save & Send Notifications". This persists this group, as well as sends out emails to all of the members (#todo on the email part).
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can view previous lunch groupings by clicking the menu in the top nav.
