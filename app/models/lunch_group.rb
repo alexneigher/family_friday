@@ -1,0 +1,2 @@
+class LunchGroup < ApplicationRecord
+end

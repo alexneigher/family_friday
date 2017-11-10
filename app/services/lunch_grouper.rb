@@ -2,7 +2,7 @@ class LunchGrouper
   MIN_GROUP_SIZE = 3
   def initialize(seed: seed)
     @seed = seed
-    @employees = Employee.all #if this gets more complicated, extract w/ a wrapper around A.R.
+    @employees = Employee.order(:id).all #if this gets more complicated, extract w/ a wrapper around A.R.
     @group_employees = []
   end
 
@@ -11,9 +11,9 @@ class LunchGrouper
     lunch_groups = []
 
     #check to make sure we have at least 3 people to match
-    return lunch_groups unless at_least_one_group?(grouped_employees)
+    return lunch_groups unless at_least_one_group?(@grouped_employees)
 
-    grouped_employees.each_with_index do |group, i|
+    @grouped_employees.each_with_index do |group, i|
       #check to make sure they have >=3
       if group.length < 3
         #if they're short, stick the small group with the previous group
@@ -26,9 +26,12 @@ class LunchGrouper
     lunch_groups
   end
 
-  def save!(seed: seed)
-    #LunchGroup.create(seed: seed, employees: @grouped_employees)
+  def save!
+    #this is wrong-ish, because if you add an employee after creating it, the order will be off
+    lunch_group = LunchGroup.create(seed: @seed)
     #LunchMailer.send_lunch_notifications(@grouped_employees)
+
+    lunch_group
   end
 
   private

@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root "lunch_groups#new"
 
   resources :employees
+  resources :lunch_groups
 end

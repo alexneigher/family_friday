@@ -1,0 +1,8 @@
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-body
+        %ul.list-group
+          - @lunch_groups.each do |group|
+            %li.list-group-item
+              = link_to group.created_at.strftime("%a, %e %b %Y"), lunch_group_path(group)

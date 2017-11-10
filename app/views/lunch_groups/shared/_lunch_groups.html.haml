@@ -1,0 +1,13 @@
+- groupings.each_with_index do |lunch_group_members, i|
+  .col-md-4
+    %ul.list-group
+      %li.list-group-item.active
+        Group #{i+1}
+      - lunch_group_members.each do |employee|
+        %li.list-group-item
+          = employee.name
+- if groupings.empty?
+  You don't have enough people! Just go eat together :)
+  %br
+  OR
+  = link_to "add some employees", new_employee_path
