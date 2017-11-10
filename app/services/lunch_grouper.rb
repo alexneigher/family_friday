@@ -1,6 +1,6 @@
 class LunchGrouper
   MIN_GROUP_SIZE = 3
-  def initialize(seed = nil)
+  def initialize(seed: seed)
     @seed = seed
     @employees = Employee.all #if this gets more complicated, extract w/ a wrapper around A.R.
   end
