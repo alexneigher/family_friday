@@ -1,5 +1,12 @@
 .col-md-9
   = @seed
+  .row
+    - @groupings.each do |lunch_group_members|
+      .col-md-4
+        %ul.list-group
+        - lunch_group_members.each do |employee|
+          %li.list-group-item
+            = employee.name
 
 .col-md-3
   %ul.list-group
