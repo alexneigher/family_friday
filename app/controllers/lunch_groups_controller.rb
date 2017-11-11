@@ -10,7 +10,7 @@ class LunchGroupsController < ApplicationController
     if @lunch_group = LunchGrouper.new(seed: @seed).save!
       redirect_to lunch_group_path(@lunch_group)
     else
-      flashp[:error] = "There was a problem creating this group"
+      flash[:error] = "There was a problem creating this group"
       redirect_to new_lunch_group_path
     end
   end
