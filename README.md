@@ -24,3 +24,9 @@ Once you like the groupings click "Save & Send Notifications". This persists thi
 You can view previous lunch groupings by clicking the menu in the top nav.
 
 To add/edit/delete employees click on the employees nav item.
+
+
+### Known Issues:
+---
+Right now persisting a lunch group has an n+1 `insert`. Because we are stubbing out lots of objects, this maybe problematic, as the company grows.
+1 potential solution would be to use https://github.com/zdennis/activerecord-import. This gem allows us to leverage sql's `insert...values` syntax for multiple inserts in the same query.
