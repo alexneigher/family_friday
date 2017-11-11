@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110213229) do
+ActiveRecord::Schema.define(version: 20171111000408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,28 @@ ActiveRecord::Schema.define(version: 20171110213229) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "grouping_employees", force: :cascade do |t|
+    t.bigint "grouping_id"
+    t.bigint "employee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_grouping_employees_on_employee_id"
+    t.index ["grouping_id"], name: "index_grouping_employees_on_grouping_id"
+  end
+
+  create_table "groupings", force: :cascade do |t|
+    t.bigint "lunch_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lunch_group_id"], name: "index_groupings_on_lunch_group_id"
+  end
+
   create_table "lunch_groups", force: :cascade do |t|
     t.integer "seed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "grouping_employees", "groupings"
+  add_foreign_key "groupings", "lunch_groups"
 end

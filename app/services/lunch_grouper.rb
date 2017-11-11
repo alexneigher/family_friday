@@ -1,9 +1,9 @@
 class LunchGrouper
   MIN_GROUP_SIZE = 3
   def initialize(seed: seed)
-    @seed = seed
+    @seed = seed.to_i
     @employees = Employee.order(:id).all #if this gets more complicated, extract w/ a wrapper around A.R.
-    @group_employees = []
+    @grouped_employees = []
   end
 
   def group_employees
@@ -28,8 +28,7 @@ class LunchGrouper
   end
 
   def save!
-    #this is wrong-ish, because if you add an employee after creating it, the order will be off
-    lunch_group = LunchGroup.create(seed: @seed)
+    lunch_group = LunchGroupCreateService.new(seed: @seed, groups: group_employees).perform!
     #LunchMailer.send_lunch_notifications(@grouped_employees)
 
     lunch_group

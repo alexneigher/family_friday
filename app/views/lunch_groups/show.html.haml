@@ -1,3 +1,8 @@
-
-= render partial: 'lunch_groups/shared/lunch_groups', locals: {groupings: @groupings}
-
+- @lunch_group.groupings.each_with_index do |lunch_group_members, i|
+  .col-md-4
+    %ul.list-group
+      %li.list-group-item.active
+        Group #{i+1}
+      - lunch_group_members.employees.each do |employee|
+        %li.list-group-item
+          = employee.name

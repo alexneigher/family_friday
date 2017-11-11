@@ -20,8 +20,7 @@ class LunchGroupsController < ApplicationController
   end
 
   def show
-    @lunch_group = LunchGroup.find(params[:id])
-    @groupings = LunchGrouper.new(seed: @lunch_group.seed).group_employees
+    @lunch_group = LunchGroup.includes(groupings: :employees).find(params[:id])
   end
 
 end
