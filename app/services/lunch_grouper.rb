@@ -28,10 +28,12 @@ class LunchGrouper
   end
 
   def save!
-    lunch_group = LunchGroupCreateService.new(seed: @seed, groups: group_employees).perform!
-    #LunchMailer.send_lunch_notifications(@grouped_employees)
-
-    lunch_group
+    if lunch_group = LunchGroupCreateService.new(seed: @seed, groups: group_employees).perform!
+      #LunchMailer.send_lunch_notifications(@grouped_employees)
+      return lunch_group
+    else
+      false
+    end
   end
 
   private
