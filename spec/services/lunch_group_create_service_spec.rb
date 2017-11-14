@@ -23,7 +23,6 @@ RSpec.describe LunchGroupCreateService do
       let(:service){ LunchGroupCreateService.new(seed: 1, groups: groups)}
 
       it 'persists the groups' do
-        binding.pry
         lunch_group = service.perform!
         expect(lunch_group.groupings.count).to eq 2
       end
