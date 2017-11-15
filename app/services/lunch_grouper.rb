@@ -7,24 +7,15 @@ class LunchGrouper
   end
 
   def group_employees
-    @grouped_employees = shuffled_employees.in_groups_of(MIN_GROUP_SIZE, false)
-    lunch_groups = []
-
+    grouped_employees = shuffled_employees.in_groups_of(MIN_GROUP_SIZE, false)
     #check to make sure we have at least 3 people to match
-    return lunch_groups unless at_least_one_group?(@grouped_employees)
+    return [] unless at_least_one_group?(grouped_employees)
 
-    @grouped_employees.each_with_index do |group, i|
-      #check to make sure they have >=3
-      if group.length < MIN_GROUP_SIZE
-        #if they're short, sprinkle the extras into random groups
-        back_populate_extras(lunch_groups, group)
-      else
-        #otherwise, this is a valid group of 3, add it to the list
-        lunch_groups << group
-      end
+    if grouped_employees.last.length < 3
+      grouped_employees = back_populate_extras(grouped_employees)
     end
 
-    lunch_groups
+    return grouped_employees
   end
 
   def save!
@@ -45,11 +36,15 @@ class LunchGrouper
       true
     end
 
-    def back_populate_extras(lunch_groups, group)
-      last_index = lunch_groups.length - 1
-      group.each_with_index do |extra_member, i|
-        lunch_groups[last_index - i] << extra_member
+    def back_populate_extras(lunch_groups)
+      groups = lunch_groups
+      last_group = groups.pop
+      last_index = groups.length - 1
+      last_group.each_with_index do |extra_member, i|
+        groups[last_index - i] << extra_member
       end
+
+      return groups
     end
 
     def shuffled_employees

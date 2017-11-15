@@ -31,18 +31,23 @@ RSpec.describe LunchGrouper do
     let!(:employee_3){ create(:employee) }
     let!(:employee_4){ create(:employee) }
     let!(:employee_5){ create(:employee) }
-    let!(:employee_6){ create(:employee) }
 
     let(:grouper){ LunchGrouper.new(seed: 1) }
 
+    let!(:groups){ grouper.group_employees }
+
     describe '#group_employees' do
       it 'groups the employees"' do
-        expect(grouper.group_employees).to be_an(Array)
+        expect(groups).to be_an(Array)
       end
 
       it 'ensures that there are no groups of 2 people' do
-        groups = grouper.group_employees
         expect(groups.all?{|g| g.length >=3 && g.length < 6}).to be true
+      end
+
+      it 'creates a single group of 5' do
+        expect(groups.length).to eq 1
+        expect(groups[0].length).to eq 5
       end
     end
   end
